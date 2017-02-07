@@ -130,16 +130,16 @@
 
   	<div>
   	  <p>Complexity
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
+  	  <img id="ComplexityButton9" src="UnpressedButton.jpg" align="right" onclick="selectValue('ComplexityButton9', 'complexity')">
+  	  <img id="ComplexityButton8" src="UnpressedButton.jpg" align="right" onclick="selectValue('ComplexityButton8', 'complexity')">
+      <img id="ComplexityButton7" src="UnpressedButton.jpg" align="right" onclick="selectValue('ComplexityButton7', 'complexity')">
+      <img id="ComplexityButton6" src="UnpressedButton.jpg" align="right" onclick="selectValue('ComplexityButton6', 'complexity')">
+      <img id="ComplexityButton5" src="UnpressedButton.jpg" align="right" onclick="selectValue('ComplexityButton5', 'complexity')">
+      <img id="ComplexityButton4" src="UnpressedButton.jpg" align="right" onclick="selectValue('ComplexityButton4', 'complexity')">
+      <img id="ComplexityButton3" src="UnpressedButton.jpg" align="right" onclick="selectValue('ComplexityButton3', 'complexity')">
+      <img id="ComplexityButton2" src="UnpressedButton.jpg" align="right" onclick="selectValue('ComplexityButton2', 'complexity')">
+      <img id="ComplexityButton1" src="UnpressedButton.jpg" align="right" onclick="selectValue('ComplexityButton1', 'complexity')">
+      <img id="ComplexityButton0" src="UnpressedButton.jpg" align="right" onclick="selectValue('ComplexityButton0', 'complexity')">
   	  <img src="PressedButton.jpg" align="right">
   	  <img src="PressedButton.jpg" align="right">
   	  <img src="PressedButton.jpg" align="right">
@@ -150,25 +150,25 @@
 
   	<div>
   	  <p>Melee
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
+  	  <img id="MeleeButton5" src="UnpressedButton.jpg" align="right" onclick="selectValue('MeleeButton5', 'melee')">
+  	  <img id="MeleeButton4" src="UnpressedButton.jpg" align="right" onclick="selectValue('MeleeButton4', 'melee')">
+      <img id="MeleeButton3" src="UnpressedButton.jpg" align="right" onclick="selectValue('MeleeButton3', 'melee')">
+      <img id="MeleeButton2" src="PressedButton.jpg" align="right" onclick="selectValue('MeleeButton2', 'melee')">
+      <img id="MeleeButton1" src="PressedButton.jpg" align="right" onclick="selectValue('MeleeButton1', 'melee')">
   	  </p>
   	</div>
 
   	<div>
   	  <p>Ranged
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
-  	  <img src="UnpressedButton.jpg" align="right">
+  	  <img id="RangedButton5" src="UnpressedButton.jpg" align="right" onclick="selectValue('RangedButton5', 'ranged')">
+  	  <img id="RangedButton4" src="UnpressedButton.jpg" align="right" onclick="selectValue('RangedButton4', 'ranged')">
+      <img id="RangedButton3" src="PressedButton.jpg" align="right" onclick="selectValue('RangedButton3', 'ranged')">
+      <img id="RangedButton2" src="PressedButton.jpg" align="right" onclick="selectValue('RangedButton2', 'ranged')">
+      <img id="RangedButton1" src="PressedButton.jpg" align="right" onclick="selectValue('RangedButton1', 'ranged')">
   	  </p>
   	</div>
     <div>
-      <button type="button" onclick="beginCompSearch()">Find Comps</button>
+      <button type="button" class="comp_button" onclick="beginCompSearch()">Find Comps</button>
     </div>
   	</td>
   	<td>
@@ -177,9 +177,8 @@
           <p id="progressArea"> </p>
         </div>
         <div>
-  	  	  <p id="displayArea">Select the values you want your team to have. <br> Complexity, Melee, and Ranged value calculator not working yet.</p>
+  	  	  <p id="displayArea">Select the values you want your team to have. <br> Melee, and Ranged value calculator not working yet.</p>
         </div>
-  	  	<button type="button" id="load_button" onclick="loadHeroes()">Load Hero Data </button>
   	  </div>
   	</td>
   </tr>

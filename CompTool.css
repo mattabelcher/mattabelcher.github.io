@@ -18,6 +18,18 @@
 	font-family: monospace;
 }
 
+.comp_button {
+	background-color: rgb(68, 92, 132); /* Green */
+    border: none;
+    color: rgb(10, 18, 22);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    width: 100%;
+}
+
 body {
 	background-color: rgb(10,18,22);
 }
