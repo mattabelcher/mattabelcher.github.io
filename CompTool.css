@@ -1,0 +1,23 @@
+.selection_area{
+	background-color: rgb(10, 18, 22); 
+	color: rgb(68, 92, 132);
+	font-size: 20px;
+	width: 460px;
+	height: 800px;
+	vertical-align: text-top;
+}
+
+.the_table {
+	width: 100%;
+	vertical-align: text-top;
+}
+
+.display_area {
+	color: rgb(68,92,132);
+	font-size: 14px;
+	font-family: monospace;
+}
+
+body {
+	background-color: rgb(10,18,22);
+}
