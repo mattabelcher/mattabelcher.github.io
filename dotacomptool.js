@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function(){
     	if (img.indexOf('UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 0; i--){
 	        	document.getElementById('ComplexityButton' + i).src  = 'PressedButton.jpg';
+	        	unpress = 0;
 	        }
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 10; i++){
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		if (img.indexOf('UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 1; i--){
 	        	document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'PressedButton.jpg';
+	        	unpress = 0;
 	        }
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 6; i++){
@@ -45,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	    if (img.indexOf('UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 1; i--){
 	        	document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'PressedButton.jpg';
+	        	unpress = 0;
 	        }
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 9; i++){
