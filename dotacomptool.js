@@ -11,6 +11,18 @@ var complexity = 5;
 var melee = 2;
 var ranged = 3;
 var heroList = [113];
+var carryPlus = true;
+var supportPlus = true;
+var nukerPlus = true;
+var disablerPlus = true;
+var junglerPlus = false;
+var durablePlus = true;
+var escapePlus = true;
+var pusherPlus = true;
+var initiatorPlus = true;
+var complexityPlus = true;
+var meleePlus = true;
+var rangedPlus = true;
 
 document.addEventListener('DOMContentLoaded', function(){
 	loadHeroes();
@@ -23,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function(){
     	if (img.indexOf('UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 0; i--){
 	        	document.getElementById('ComplexityButton' + i).src  = 'PressedButton.jpg';
+	        	unpress = 0;
 	        }
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 10; i++){
@@ -34,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		if (img.indexOf('UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 1; i--){
 	        	document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'PressedButton.jpg';
+	        	unpress = 0;
 	        }
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 6; i++){
@@ -45,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	    if (img.indexOf('UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 1; i--){
 	        	document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'PressedButton.jpg';
+	        	unpress = 0;
 	        }
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 9; i++){
@@ -95,6 +110,58 @@ document.addEventListener('DOMContentLoaded', function(){
    }
 }
 
+function togglePlus(btn, type){
+	var toggle = false;
+	var img = document.getElementById(btn).src;
+	if (img.indexOf('UnpressedPlus.jpg')!=-1) {
+	    document.getElementById(btn).src  = 'PressedPlus.jpg';
+	    toggle = true;
+	} else {
+		document.getElementById(btn).src  = 'UnpressedPlus.jpg';
+	}
+
+	switch (type) {
+   		case 'carry':
+   			carryPlus = toggle;
+   			break;
+   		case 'support':
+   			supportPlus = toggle;
+   			break;
+   		case 'nuker':
+   			nukerPlus = toggle;
+   			break;
+   		case 'disabler':
+   			disablerPlus = toggle;
+   			break;
+   		case 'jungler':
+   			junglerPlus = toggle;
+   			break;
+   		case 'durable':
+   			durablePlus = toggle;
+   			break;
+   		case 'escape':
+   			escapePlus = toggle;
+   			break;
+   		case 'pusher':
+   			pusherPlus = toggle;
+   			break;
+   		case 'initiator':
+   			initiatorPlus = toggle;
+   			break;
+   		case 'complexity':
+   			complexityPlus = toggle;
+   			break;
+   		case 'melee':
+   			meleePlus = toggle;
+   			break;
+   		case 'ranged':
+   			rangedPlus = toggle;
+   			break;
+   		default:
+   			break;
+   }
+}
+
 function beginCompSearch(){
 	document.getElementById('progressArea').innerHTML = "Finding comps. This may take a moment. <br>";
 	document.getElementById('displayArea').innerHTML = "";
@@ -107,69 +174,184 @@ function findComps(){
 	var positionTwo = 2;
 	var positionThree = 3;
 	var positionFour = 4;
-	for (var a = 0; a < heroList.length; a++){
-		positionTwo = positionOne + 1;
-		for (var b = positionOne; b < heroList.length; b++){
-			positionThree = positionTwo + 1;
-			for (var c = positionTwo; c < heroList.length; c++){
-				positionFour = positionThree + 1;
-				for (var d = positionThree; d < heroList.length; d++){
-					for (var e = positionFour; e < heroList.length; e++){
-						if (heroList[a].carry + heroList[b].carry + heroList[c].carry + heroList[d].carry + heroList[e].carry >= carry &&
-							heroList[a].support + heroList[b].support + heroList[c].support + heroList[d].support + heroList[e].support >= support &&
-							heroList[a].nuker + heroList[b].nuker + heroList[c].nuker + heroList[d].nuker + heroList[e].nuker >= nuker &&
-							heroList[a].disabler + heroList[b].disabler + heroList[c].disabler + heroList[d].disabler + heroList[e].disabler >= disabler &&
-							heroList[a].jungler + heroList[b].jungler + heroList[c].jungler + heroList[d].jungler + heroList[e].jungler >= jungler &&
-							heroList[a].durable + heroList[b].durable + heroList[c].durable + heroList[d].durable + heroList[e].durable >= durable &&
-							heroList[a].escape + heroList[b].escape + heroList[c].escape + heroList[d].escape + heroList[e].escape >= escape &&
-							heroList[a].pusher + heroList[b].pusher + heroList[c].pusher + heroList[d].pusher + heroList[e].pusher >= pusher &&
-							heroList[a].initiator + heroList[b].initiator + heroList[c].initiator + heroList[d].initiator + heroList[e].initiator >= initiator &&
-							heroList[a].complexity + heroList[b].complexity + heroList[c].complexity + heroList[d].complexity + heroList[e].complexity >= complexity &&
-							heroList[a].melee + heroList[b].melee + heroList[c].melee + heroList[d].melee + heroList[e].melee >= melee &&
-							heroList[a].ranged + heroList[b].ranged + heroList[c].ranged + heroList[d].ranged + heroList[e].ranged >= ranged){
-							document.getElementById('displayArea').innerHTML += heroList[a].name;
-							for (var i = heroList[a].name.length; i <= 20; i++){
-								document.getElementById('displayArea').innerHTML += "&nbsp;";
+	var pass;
+	quitSearch:
+		for (var a = 0; a < heroList.length; a++){
+			positionTwo = positionOne + 1;
+			for (var b = positionOne; b < heroList.length; b++){
+				positionThree = positionTwo + 1;
+				for (var c = positionTwo; c < heroList.length; c++){
+					positionFour = positionThree + 1;
+					for (var d = positionThree; d < heroList.length; d++){
+						for (var e = positionFour; e < heroList.length; e++){
+							pass = true;
+							while(pass){
+								if(carryPlus){
+									if (!(heroList[a].carry + heroList[b].carry + heroList[c].carry + heroList[d].carry + heroList[e].carry >= carry)){
+										break;
+									} 
+								} else {
+									if (!(heroList[a].carry + heroList[b].carry + heroList[c].carry + heroList[d].carry + heroList[e].carry == carry)){
+										break;
+									} 
+								}
+
+								if(supportPlus){
+									if (!(heroList[a].support + heroList[b].support + heroList[c].support + heroList[d].support + heroList[e].support >= support)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].support + heroList[b].support + heroList[c].support + heroList[d].support + heroList[e].support == support)){
+										break;
+									}
+								}
+
+								if(nukerPlus){
+									if (!(heroList[a].nuker + heroList[b].nuker + heroList[c].nuker + heroList[d].nuker + heroList[e].nuker >= nuker)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].nuker + heroList[b].nuker + heroList[c].nuker + heroList[d].nuker + heroList[e].nuker == nuker)){
+										break;
+									}
+								}
+
+								if(disablerPlus){
+									if (!(heroList[a].disabler + heroList[b].disabler + heroList[c].disabler + heroList[d].disabler + heroList[e].disabler >= disabler)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].disabler + heroList[b].disabler + heroList[c].disabler + heroList[d].disabler + heroList[e].disabler == disabler)){
+										break;
+									}
+								}
+
+								if(junglerPlus){
+									if (!(heroList[a].jungler + heroList[b].jungler + heroList[c].jungler + heroList[d].jungler + heroList[e].jungler >= jungler)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].jungler + heroList[b].jungler + heroList[c].jungler + heroList[d].jungler + heroList[e].jungler == jungler)){
+										break;
+									}
+								}
+
+								if(durablePlus){
+									if (!(heroList[a].durable + heroList[b].durable + heroList[c].durable + heroList[d].durable + heroList[e].durable >= durable)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].durable + heroList[b].durable + heroList[c].durable + heroList[d].durable + heroList[e].durable == durable)){
+										break;
+									}
+								}
+
+								if(escapePlus){
+									if (!(heroList[a].escape + heroList[b].escape + heroList[c].escape + heroList[d].escape + heroList[e].escape >= escape)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].escape + heroList[b].escape + heroList[c].escape + heroList[d].escape + heroList[e].escape == escape)){
+										break;
+									}
+								}
+
+								if(pusherPlus){
+									if (!(heroList[a].pusher + heroList[b].pusher + heroList[c].pusher + heroList[d].pusher + heroList[e].pusher >= pusher)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].pusher + heroList[b].pusher + heroList[c].pusher + heroList[d].pusher + heroList[e].pusher == pusher)){
+										break;
+									}
+								}
+
+								if(initiatorPlus){
+									if (!(heroList[a].initiator + heroList[b].initiator + heroList[c].initiator + heroList[d].initiator + heroList[e].initiator >= initiator)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].initiator + heroList[b].initiator + heroList[c].initiator + heroList[d].initiator + heroList[e].initiator == initiator)){
+										break;
+									}
+								}
+
+								if(complexityPlus){
+									if (!(heroList[a].complexity + heroList[b].complexity + heroList[c].complexity + heroList[d].complexity + heroList[e].complexity >= complexity)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].complexity + heroList[b].complexity + heroList[c].complexity + heroList[d].complexity + heroList[e].complexity == complexity)){
+										break;
+									}
+								}
+
+								if(meleePlus){
+									if (!(heroList[a].melee + heroList[b].melee + heroList[c].melee + heroList[d].melee + heroList[e].melee >= melee)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].melee + heroList[b].melee + heroList[c].melee + heroList[d].melee + heroList[e].melee == melee)){
+										break;
+									}
+								}
+
+								if(rangedPlus){
+									if (!(heroList[a].ranged + heroList[b].ranged + heroList[c].ranged + heroList[d].ranged + heroList[e].ranged >= ranged)){
+										break;
+									}
+								} else {
+									if (!(heroList[a].ranged + heroList[b].ranged + heroList[c].ranged + heroList[d].ranged + heroList[e].ranged == ranged)){
+										break;
+									}
+								}
+
+								document.getElementById('displayArea').innerHTML += heroList[a].name;
+								for (var i = heroList[a].name.length; i <= 19; i++){
+									document.getElementById('displayArea').innerHTML += "&nbsp;";
+								}
+								document.getElementById('displayArea').innerHTML += heroList[b].name;
+								for (var i = heroList[b].name.length; i <= 19; i++){
+									document.getElementById('displayArea').innerHTML += "&nbsp;";
+								}
+								document.getElementById('displayArea').innerHTML += heroList[c].name;
+								for (var i = heroList[c].name.length; i <= 19; i++){
+									document.getElementById('displayArea').innerHTML += "&nbsp;";
+								}
+								document.getElementById('displayArea').innerHTML += heroList[d].name;
+								for (var i = heroList[d].name.length; i <= 19; i++){
+									document.getElementById('displayArea').innerHTML += "&nbsp;";
+								}
+								document.getElementById('displayArea').innerHTML += heroList[e].name + "<br>";
+								lineCounter++
+								pass = false;
 							}
-							document.getElementById('displayArea').innerHTML += heroList[b].name;
-							for (var i = heroList[b].name.length; i <= 20; i++){
-								document.getElementById('displayArea').innerHTML += "&nbsp;";
+							if (lineCounter > 46){
+								break quitSearch;
 							}
-							document.getElementById('displayArea').innerHTML += heroList[c].name;
-							for (var i = heroList[c].name.length; i <= 20; i++){
-								document.getElementById('displayArea').innerHTML += "&nbsp;";
-							}
-							document.getElementById('displayArea').innerHTML += heroList[d].name;
-							for (var i = heroList[d].name.length; i <= 20; i++){
-								document.getElementById('displayArea').innerHTML += "&nbsp;";
-							}
-							document.getElementById('displayArea').innerHTML += heroList[e].name + "<br>";
-							lineCounter++;
 						}
+						positionFour++;
 						if (lineCounter > 46){
-							break;
+							break quitSearch;
 						}
 					}
-					positionFour++;
+					positionThree++;
 					if (lineCounter > 46){
-						break;
+						break quitSearch;
 					}
 				}
-				positionThree++;
+				positionTwo++;
 				if (lineCounter > 46){
-					break;
+					break quitSearch;
 				}
 			}
-			positionTwo++;
+			positionOne++;
 			if (lineCounter > 46){
-				break;
+				break quitSearch;
 			}
 		}
-		positionOne++;
-		if (lineCounter > 46){
-			document.getElementById('displayArea').innerHTML += "<br> Too many comps found. Search ended. <br>";
-			break;
-		}
+	if (lineCounter > 46){
+		document.getElementById('displayArea').innerHTML += "<br> Too many comps found. Search ended. <br>";
 	}
 	document.getElementById('displayArea').innerHTML += "Done.";
 	document.getElementById('progressArea').innerHTML = "";
