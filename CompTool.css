@@ -3,19 +3,16 @@
 	color: rgb(68, 92, 132);
 	font-size: 20px;
 	width: 480px;
-	height: 800px;
 	vertical-align: text-top;
 }
 
 .the_table {
 	width: 100%;
-	vertical-align: text-top;
 }
 
 .display_area {
 	color: rgb(68,92,132);
-	font-size: 14px;
-	font-family: monospace;
+	font-size: 18px;
 }
 
 .comp_button {
@@ -30,6 +27,34 @@
     width: 100%;
 }
 
+.comp {
+	border-color: red;
+}
+
 body {
 	background-color: rgb(10,18,22);
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(68,92,132);
+  position: relative;
+}
+
+a[data]:hover:after {
+  width: 190px;
+  font-size: 18px;
+  content: attr(data);
+  padding: 4px 8px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  white-space: pre-wrap;
+  z-index: 2;
+  border-radius: 5px ;
+  background: rgba(10,18,22,0.95);
+  pointer-events: none;
 }

@@ -32,38 +32,38 @@ document.addEventListener('DOMContentLoaded', function(){
  	var unpress = 0;
     var img = document.getElementById(btn).src;
     if (type === 'complexity'){
-    	if (img.indexOf('UnpressedButton.jpg')!=-1) {
+    	if (img.indexOf('images/UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 0; i--){
-	        	document.getElementById('ComplexityButton' + i).src  = 'PressedButton.jpg';
+	        	document.getElementById('ComplexityButton' + i).src  = 'images/PressedButton.jpg';
 	        	unpress = 0;
 	        }
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 10; i++){
-	    		document.getElementById('ComplexityButton' + i).src  = 'UnpressedButton.jpg';
+	    		document.getElementById('ComplexityButton' + i).src  = 'images/UnpressedButton.jpg';
 	    		unpress = -1;
 	    	}
 	   	}
     } else if (type === 'melee' || type === 'ranged'){
-		if (img.indexOf('UnpressedButton.jpg')!=-1) {
+		if (img.indexOf('images/UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 1; i--){
-	        	document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'PressedButton.jpg';
+	        	document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'images/PressedButton.jpg';
 	        	unpress = 0;
 	        }
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 6; i++){
-	    		document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'UnpressedButton.jpg';
+	    		document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'images/UnpressedButton.jpg';
 	    		unpress = -1;
 	    	}
 	   	}
     } else {
-	    if (img.indexOf('UnpressedButton.jpg')!=-1) {
+	    if (img.indexOf('images/UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 1; i--){
-	        	document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'PressedButton.jpg';
+	        	document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'images/PressedButton.jpg';
 	        	unpress = 0;
 	        }
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 9; i++){
-	    		document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'UnpressedButton.jpg';
+	    		document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'images/UnpressedButton.jpg';
 	    		unpress = -1;
 	    	}
 	   	}
@@ -113,11 +113,11 @@ document.addEventListener('DOMContentLoaded', function(){
 function togglePlus(btn, type){
 	var toggle = false;
 	var img = document.getElementById(btn).src;
-	if (img.indexOf('UnpressedPlus.jpg')!=-1) {
-	    document.getElementById(btn).src  = 'PressedPlus.jpg';
+	if (img.indexOf('images/UnpressedPlus.jpg')!=-1) {
+	    document.getElementById(btn).src  = 'images/PressedPlus.jpg';
 	    toggle = true;
 	} else {
-		document.getElementById(btn).src  = 'UnpressedPlus.jpg';
+		document.getElementById(btn).src  = 'images/UnpressedPlus.jpg';
 	}
 
 	switch (type) {
@@ -306,51 +306,39 @@ function findComps(){
 									}
 								}
 
-								document.getElementById('displayArea').innerHTML += heroList[a].name;
-								for (var i = heroList[a].name.length; i <= 19; i++){
-									document.getElementById('displayArea').innerHTML += "&nbsp;";
-								}
-								document.getElementById('displayArea').innerHTML += heroList[b].name;
-								for (var i = heroList[b].name.length; i <= 19; i++){
-									document.getElementById('displayArea').innerHTML += "&nbsp;";
-								}
-								document.getElementById('displayArea').innerHTML += heroList[c].name;
-								for (var i = heroList[c].name.length; i <= 19; i++){
-									document.getElementById('displayArea').innerHTML += "&nbsp;";
-								}
-								document.getElementById('displayArea').innerHTML += heroList[d].name;
-								for (var i = heroList[d].name.length; i <= 19; i++){
-									document.getElementById('displayArea').innerHTML += "&nbsp;";
-								}
-								document.getElementById('displayArea').innerHTML += heroList[e].name + "<br>";
+								document.getElementById('displayArea').innerHTML += "<a data=\"" + heroList[a].name + "\nCarry: " + heroList[a].carry + "\nSupport: " + heroList[a].support + "\nNuker: " + heroList[a].nuker + "\nDisabler: " + heroList[a].disabler + "\nJungler: " + heroList[a].jungler + "\nDurabler: " + heroList[a].durable + "\nEscape: " + heroList[a].escape + "\nPusher: " + heroList[a].pusher + "\nInitiator: " + heroList[a].initiator + "\nComplexity: " + heroList[a].complexity + "\"><img src=\"" + heroList[a].imgsrc + "\"> </a>";
+								document.getElementById('displayArea').innerHTML += "<a data=\"" + heroList[b].name + "\nCarry: " + heroList[b].carry + "\nSupport: " + heroList[b].support + "\nNuker: " + heroList[b].nuker + "\nDisabler: " + heroList[b].disabler + "\nJungler: " + heroList[b].jungler + "\nDurabler: " + heroList[b].durable + "\nEscape: " + heroList[b].escape + "\nPusher: " + heroList[b].pusher + "\nInitiator: " + heroList[b].initiator + "\nComplexity: " + heroList[b].complexity + "\"><img src=\"" + heroList[b].imgsrc + "\"> </a>";
+								document.getElementById('displayArea').innerHTML += "<a data=\"" + heroList[c].name + "\nCarry: " + heroList[c].carry + "\nSupport: " + heroList[c].support + "\nNuker: " + heroList[c].nuker + "\nDisabler: " + heroList[c].disabler + "\nJungler: " + heroList[c].jungler + "\nDurabler: " + heroList[c].durable + "\nEscape: " + heroList[c].escape + "\nPusher: " + heroList[c].pusher + "\nInitiator: " + heroList[c].initiator + "\nComplexity: " + heroList[c].complexity + "\"><img src=\"" + heroList[c].imgsrc + "\"> </a>";
+								document.getElementById('displayArea').innerHTML += "<a data=\"" + heroList[d].name + "\nCarry: " + heroList[d].carry + "\nSupport: " + heroList[d].support + "\nNuker: " + heroList[d].nuker + "\nDisabler: " + heroList[d].disabler + "\nJungler: " + heroList[d].jungler + "\nDurabler: " + heroList[d].durable + "\nEscape: " + heroList[d].escape + "\nPusher: " + heroList[d].pusher + "\nInitiator: " + heroList[d].initiator + "\nComplexity: " + heroList[d].complexity + "\"><img src=\"" + heroList[d].imgsrc + "\"> </a>";
+								document.getElementById('displayArea').innerHTML += "<a data=\"" + heroList[e].name + "\nCarry: " + heroList[e].carry + "\nSupport: " + heroList[e].support + "\nNuker: " + heroList[e].nuker + "\nDisabler: " + heroList[e].disabler + "\nJungler: " + heroList[e].jungler + "\nDurabler: " + heroList[e].durable + "\nEscape: " + heroList[e].escape + "\nPusher: " + heroList[e].pusher + "\nInitiator: " + heroList[e].initiator + "\nComplexity: " + heroList[e].complexity + "\"><img src=\"" + heroList[e].imgsrc + "\"> </a><br>";
 								lineCounter++
 								pass = false;
 							}
-							if (lineCounter > 46){
+							if (lineCounter > 15){
 								break quitSearch;
 							}
 						}
 						positionFour++;
-						if (lineCounter > 46){
+						if (lineCounter > 15){
 							break quitSearch;
 						}
 					}
 					positionThree++;
-					if (lineCounter > 46){
+					if (lineCounter > 15){
 						break quitSearch;
 					}
 				}
 				positionTwo++;
-				if (lineCounter > 46){
+				if (lineCounter > 15){
 					break quitSearch;
 				}
 			}
 			positionOne++;
-			if (lineCounter > 46){
+			if (lineCounter > 15){
 				break quitSearch;
 			}
 		}
-	if (lineCounter > 46){
+	if (lineCounter > 15){
 		document.getElementById('displayArea').innerHTML += "<br> Too many comps found. Search ended. <br>";
 	}
 	document.getElementById('displayArea').innerHTML += "Done.";
@@ -358,117 +346,117 @@ function findComps(){
 }
 
 function loadHeroes(){
-	heroList[0] = {name:"Abbadon", carry:1, support:2, nuker:0, disabler:0, jungler:0, durable:2, escape:0, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
-	heroList[1] = {name:"Alchemist", carry:2, support:1, nuker:1, disabler:1, jungler:0, durable:2, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
-	heroList[2] = {name:"Ancient Apparition", carry:0, support:2, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[3] = {name:"Anti-Mage", carry:3, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:3, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
-	heroList[4] = {name:"Arc Warden", carry:3, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:3, pusher:0, initiator:0, complexity:3, melee:0, ranged:1};
-	heroList[5] = {name:"Axe", carry:0, support:0, nuker:0, disabler:2, jungler:2, durable:3, escape:0, pusher:0, initiator:3, complexity:1, melee:1, ranged:0};
-	heroList[6] = {name:"Bane", carry:0, support:2, nuker:1, disabler:3, jungler:0, durable:1, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[7] = {name:"Batrider", carry:0, support:0, nuker:0, disabler:2, jungler:2, durable:0, escape:1, pusher:0, initiator:3, complexity:2, melee:0, ranged:1};
-	heroList[8] = {name:"Beastmaster", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
-	heroList[9] = {name:"Bloodseeker", carry:1, support:0, nuker:1, disabler:1, jungler:1, durable:0, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
-	heroList[10] = {name:"Bounty Hunter", carry:0, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:2, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
-	heroList[11] = {name:"Brewmaster", carry:1, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:3, complexity:3, melee:1, ranged:0};
-	heroList[12] = {name:"Bristleback", carry:2, support:0, nuker:1, disabler:0, jungler:0, durable:3, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
-	heroList[13] = {name:"Broodmother", carry:1, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:3, pusher:3, initiator:0, complexity:2, melee:1, ranged:0};
-	heroList[14] = {name:"Centaur Warrunner", carry:0, support:0, nuker:1, disabler:1, jungler:0, durable:3, escape:1, pusher:0, initiator:3, complexity:1, melee:1, ranged:0};
-	heroList[15] = {name:"Chaos Knight", carry:3, support:0, nuker:0, disabler:2, jungler:0, durable:2, escape:0, pusher:2, initiator:1, complexity:1, melee:1, ranged:0};
-	heroList[16] = {name:"Chen", carry:0, support:2, nuker:0, disabler:0, jungler:3, durable:0, escape:0, pusher:2, initiator:0, complexity:3, melee:0, ranged:1};
-	heroList[17] = {name:"Clinkz", carry:2, support:0, nuker:0, disabler:0, jungler:0, durable:0, escape:3, pusher:1, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[18] = {name:"Clockwerk", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:1, escape:0, pusher:0, initiator:3, complexity:2, melee:1, ranged:0};
-	heroList[19] = {name:"Crystal Maiden", carry:0, support:3, nuker:2, disabler:2, jungler:1, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[20] = {name:"Dark Seer", carry:0, support:0, nuker:0, disabler:1, jungler:1, durable:0, escape:1, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
-	heroList[21] = {name:"Dazzle", carry:0, support:3, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[22] = {name:"Death Prophet", carry:1, support:0, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:3, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[23] = {name:"Disruptor", carry:0, support:2, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:1, complexity:2, melee:0, ranged:1};
-	heroList[24] = {name:"Doom", carry:1, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
-	heroList[25] = {name:"Dragon Knight", carry:2, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:3, initiator:1, complexity:1, melee:1, ranged:0};
-	heroList[26] = {name:"Drow Ranger", carry:2, support:0, nuker:0, disabler:1, jungler:0, durable:0, escape:0, pusher:1, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[27] = {name:"Earth Spirit", carry:0, support:0, nuker:2, disabler:1, jungler:0, durable:1, escape:2, pusher:0, initiator:1, complexity:3, melee:1, ranged:0};
-	heroList[28] = {name:"Earthshaker", carry:0, support:1, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:3, complexity:2, melee:1, ranged:0};
-	heroList[29] = {name:"Elder Titan", carry:0, support:0, nuker:1, disabler:1, jungler:0, durable:1, escape:0, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
-	heroList[30] = {name:"Ember Spirit", carry:2, support:0, nuker:1, disabler:1, jungler:0, durable:0, escape:3, pusher:0, initiator:1, complexity:2, melee:1, ranged:0};
-	heroList[31] = {name:"Enchantress", carry:0, support:2, nuker:0, disabler:1, jungler:3, durable:1, escape:0, pusher:2, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[32] = {name:"Enigma", carry:0, support:0, nuker:0, disabler:2, jungler:3, durable:0, escape:0, pusher:2, initiator:2, complexity:2, melee:0, ranged:1};
-	heroList[33] = {name:"Faceless Void", carry:2, support:0, nuker:0, disabler:2, jungler:0, durable:1, escape:1, pusher:0, initiator:3, complexity:2, melee:1, ranged:0};
-	heroList[34] = {name:"Gyrocopter", carry:3, support:0, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[35] = {name:"Huskar", carry:2, support:0, nuker:0, disabler:0, jungler:0, durable:2, escape:0, pusher:0, initiator:1, complexity:1, melee:0, ranged:1};
-	heroList[36] = {name:"Invoker", carry:1, support:0, nuker:3, disabler:2, jungler:0, durable:0, escape:1, pusher:1, initiator:0, complexity:3, melee:0, ranged:1};
-	heroList[37] = {name:"Io", carry:0, support:3, nuker:1, disabler:0, jungler:0, durable:0, escape:2, pusher:0, initiator:0, complexity:3, melee:0, ranged:1};
-	heroList[38] = {name:"Jakiro", carry:0, support:1, nuker:2, disabler:1, jungler:0, durable:0, escape:0, pusher:2, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[39] = {name:"Juggernaut", carry:2, support:0, nuker:0, disabler:0, jungler:0, durable:0, escape:1, pusher:1, initiator:0, complexity:1, melee:1, ranged:0};
-	heroList[40] = {name:"Keeper of the Light", carry:0, support:3, nuker:2, disabler:1, jungler:1, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[41] = {name:"Kunkka", carry:1, support:0, nuker:1, disabler:1, jungler:0, durable:1, escape:0, pusher:0, initiator:1, complexity:2, melee:1, ranged:0};
-	heroList[42] = {name:"Legion Commander", carry:1, support:0, nuker:1, disabler:2, jungler:0, durable:1, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
-	heroList[43] = {name:"Lechrac", carry:1, support:1, nuker:3, disabler:1, jungler:0, durable:0, escape:0, pusher:3, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[44] = {name:"Lich", carry:0, support:3, nuker:2, disabler:0, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[45] = {name:"Lifestealer", carry:2, support:0, nuker:0, disabler:1, jungler:1, durable:2, escape:1, pusher:0, initiator:0, complexity:2, melee:1, ranged:0};
-	heroList[46] = {name:"Lina", carry:1, support:1, nuker:3, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[47] = {name:"Lion", carry:0, support:2, nuker:3, disabler:3, jungler:0, durable:0, escape:0, pusher:0, initiator:2, complexity:1, melee:0, ranged:1};
-	heroList[48] = {name:"Lone Druid", carry:2, support:0, nuker:0, disabler:0, jungler:1, durable:1, escape:0, pusher:3, initiator:0, complexity:3, melee:0, ranged:1};
-	heroList[49] = {name:"Luna", carry:2, support:0, nuker:2, disabler:0, jungler:0, durable:0, escape:0, pusher:1, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[50] = {name:"Lycan", carry:2, support:0, nuker:0, disabler:0, jungler:1, durable:1, escape:1, pusher:3, initiator:0, complexity:2, melee:1, ranged:0};
-	heroList[51] = {name:"Magnus", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:0, escape:1, pusher:0, initiator:3, complexity:2, melee:1, ranged:0};
-	heroList[52] = {name:"Medusa", carry:3, support:0, nuker:0, disabler:1, jungler:0, durable:1, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[53] = {name:"Meepo", carry:2, support:0, nuker:2, disabler:1, jungler:0, durable:0, escape:2, pusher:1, initiator:1, complexity:3, melee:1, ranged:0};
-	heroList[54] = {name:"Mirana", carry:1, support:1, nuker:1, disabler:1, jungler:0, durable:0, escape:2, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[55] = {name:"Monkey King", carry:2, support:0, nuker:0, disabler:1, jungler:0, durable:0, escape:2, pusher:0, initiator:1, complexity:2, melee:1, ranged:0};
-	heroList[56] = {name:"Morphling", carry:3, support:0, nuker:1, disabler:1, jungler:0, durable:2, escape:3, pusher:0, initiator:0, complexity:3, melee:0, ranged:1};
-	heroList[57] = {name:"Naga Siren", carry:3, support:1, nuker:0, disabler:2, jungler:0, durable:0, escape:1, pusher:2, initiator:1, complexity:2, melee:1, ranged:0};
-	heroList[58] = {name:"Nature's Prophet", carry:1, support:0, nuker:1, disabler:0, jungler:3, durable:0, escape:1, pusher:3, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[59] = {name:"Necrophos", carry:1, support:0, nuker:2, disabler:1, jungler:0, durable:1, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[60] = {name:"Night Stalker", carry:1, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:2, complexity:1, melee:1, ranged:0};
-	heroList[61] = {name:"Nyx Assassin", carry:0, support:0, nuker:2, disabler:2, jungler:0, durable:0, escape:1, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
-	heroList[62] = {name:"Ogre Magi", carry:0, support:2, nuker:2, disabler:2, jungler:0, durable:1, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
-	heroList[63] = {name:"Omniknight", carry:0, support:2, nuker:1, disabler:0, jungler:0, durable:1, escape:0, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
-	heroList[64] = {name:"Oracle", carry:0, support:3, nuker:3, disabler:2, jungler:0, durable:0, escape:1, pusher:0, initiator:0, complexity:3, melee:0, ranged:1};
-	heroList[65] = {name:"Outhouse Decorator", carry:2, support:0, nuker:2, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[66] = {name:"Phantom Assassin", carry:3, support:0, nuker:0, disabler:0, jungler:0, durable:0, escape:1, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
-	heroList[67] = {name:"Phantom Lancer", carry:2, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:2, pusher:1, initiator:0, complexity:2, melee:1, ranged:0};
-	heroList[68] = {name:"Phoenix", carry:0, support:1, nuker:3, disabler:1, jungler:0, durable:0, escape:2, pusher:0, initiator:2, complexity:2, melee:0, ranged:1};
-	heroList[69] = {name:"Puck", carry:0, support:0, nuker:2, disabler:3, jungler:0, durable:0, escape:3, pusher:0, initiator:3, complexity:2, melee:0, ranged:1};
-	heroList[70] = {name:"Pudge", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
-	heroList[71] = {name:"Pugna", carry:0, support:0, nuker:2, disabler:0, jungler:0, durable:0, escape:0, pusher:2, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[72] = {name:"Queen of Pain", carry:1, support:0, nuker:3, disabler:0, jungler:0, durable:0, escape:3, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[73] = {name:"Razor", carry:2, support:0, nuker:1, disabler:0, jungler:0, durable:2, escape:0, pusher:1, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[74] = {name:"Riki", carry:2, support:0, nuker:0, disabler:1, jungler:0, durable:0, escape:2, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
-	heroList[75] = {name:"Rubick", carry:0, support:2, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:3, melee:0, ranged:1};
-	heroList[76] = {name:"Sand King", carry:0, support:0, nuker:2, disabler:2, jungler:1, durable:0, escape:2, pusher:0, initiator:3, complexity:2, melee:1, ranged:0};
-	heroList[77] = {name:"Shadow Demon", carry:0, support:2, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:1, complexity:2, melee:0, ranged:1};
-	heroList[78] = {name:"Shadow Fiend", carry:2, support:0, nuker:3, disabler:0, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[79] = {name:"Shadow Shaman", carry:0, support:2, nuker:2, disabler:3, jungler:0, durable:0, escape:0, pusher:3, initiator:1, complexity:1, melee:0, ranged:1};
-	heroList[80] = {name:"Silencer", carry:1, support:1, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:2, complexity:2, melee:0, ranged:1};
-	heroList[81] = {name:"Skywrath Mage", carry:0, support:2, nuker:3, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[82] = {name:"Slardar", carry:2, support:0, nuker:0, disabler:1, jungler:0, durable:2, escape:1, pusher:0, initiator:2, complexity:1, melee:1, ranged:0};
-	heroList[83] = {name:"Slark", carry:2, support:0, nuker:1, disabler:1, jungler:0, durable:0, escape:3, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
-	heroList[84] = {name:"Sniper", carry:3, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[85] = {name:"Spectre", carry:3, support:0, nuker:0, disabler:0, jungler:0, durable:1, escape:1, pusher:0, initiator:0, complexity:2, melee:1, ranged:0};
-	heroList[86] = {name:"Spirit Breaker", carry:1, support:0, nuker:0, disabler:2, jungler:0, durable:2, escape:1, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
-	heroList[87] = {name:"Storm Spirit", carry:2, support:0, nuker:2, disabler:1, jungler:0, durable:0, escape:3, pusher:0, initiator:1, complexity:3, melee:0, ranged:1};
-	heroList[88] = {name:"Sven", carry:2, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:2, complexity:1, melee:1, ranged:0};
-	heroList[89] = {name:"Techies", carry:0, support:0, nuker:3, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[90] = {name:"Templar Assassin", carry:2, support:0, nuker:0, disabler:0, jungler:0, durable:0, escape:1, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[91] = {name:"Terrorblade", carry:3, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:0, pusher:2, initiator:0, complexity:2, melee:1, ranged:0};
-	heroList[92] = {name:"Tidehunter", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:3, escape:0, pusher:0, initiator:3, complexity:1, melee:1, ranged:0};
-	heroList[93] = {name:"Timbersaw", carry:0, support:0, nuker:3, disabler:0, jungler:0, durable:2, escape:2, pusher:0, initiator:0, complexity:2, melee:1, ranged:0};
-	heroList[94] = {name:"Tinker", carry:1, support:0, nuker:3, disabler:0, jungler:0, durable:0, escape:0, pusher:2, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[95] = {name:"Tiny", carry:3, support:0, nuker:2, disabler:1, jungler:0, durable:2, escape:0, pusher:2, initiator:2, complexity:1, melee:1, ranged:0};
-	heroList[96] = {name:"Treant Protector", carry:0, support:3, nuker:0, disabler:1, jungler:0, durable:1, escape:1, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
-	heroList[97] = {name:"Troll Warlord", carry:3, support:0, nuker:0, disabler:1, jungler:0, durable:1, escape:0, pusher:2, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[98] = {name:"Tusk", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:2, complexity:1, melee:1, ranged:0};
-	heroList[99] = {name:"Underlord", carry:0, support:1, nuker:1, disabler:1, jungler:0, durable:1, escape:2, pusher:0, initiator:0, complexity:2, melee:1, ranged:0};
-	heroList[100] = {name:"Undying", carry:0, support:1, nuker:1, disabler:1, jungler:0, durable:2, escape:0, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
-	heroList[101] = {name:"Ursa", carry:2, support:0, nuker:0, disabler:1, jungler:1, durable:1, escape:0, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
-	heroList[102] = {name:"Vengeful Spirit", carry:0, support:3, nuker:1, disabler:2, jungler:0, durable:0, escape:1, pusher:0, initiator:2, complexity:1, melee:0, ranged:1};
-	heroList[103] = {name:"Venomancer", carry:0, support:2, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:1, initiator:1, complexity:1, melee:0, ranged:1};
-	heroList[104] = {name:"Viper", carry:1, support:0, nuker:0, disabler:1, jungler:0, durable:2, escape:0, pusher:0, initiator:1, complexity:1, melee:0, ranged:1};
-	heroList[105] = {name:"Visage", carry:0, support:1, nuker:2, disabler:1, jungler:0, durable:1, escape:0, pusher:1, initiator:0, complexity:3, melee:0, ranged:1};
-	heroList[106] = {name:"Warlock", carry:0, support:1, nuker:0, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:2, complexity:1, melee:0, ranged:1};
-	heroList[107] = {name:"Weaver", carry:2, support:0, nuker:0, disabler:0, jungler:0, durable:0, escape:3, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[108] = {name:"Windranger", carry:1, support:1, nuker:1, disabler:1, jungler:0, durable:0, escape:1, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[109] = {name:"Winter Wyvern", carry:0, support:3, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
-	heroList[110] = {name:"Witch Doctor", carry:0, support:3, nuker:2, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
-	heroList[111] = {name:"Wraith King", carry:2, support:1, nuker:0, disabler:2, jungler:0, durable:3, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
-	heroList[112] = {name:"Zeus", carry:0, support:0, nuker:3, disabler:0, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[0] = {name:"Abbadon", imgsrc:"images/abaddon.png", carry:1, support:2, nuker:0, disabler:0, jungler:0, durable:2, escape:0, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
+	heroList[1] = {name:"Alchemist", imgsrc:"images/alchemist.png", carry:2, support:1, nuker:1, disabler:1, jungler:0, durable:2, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
+	heroList[2] = {name:"Ancient Apparition", imgsrc:"images/ancient_apparition.png", carry:0, support:2, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[3] = {name:"Anti-Mage", imgsrc:"images/antimage.png", carry:3, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:3, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
+	heroList[4] = {name:"Arc Warden", imgsrc:"images/arc_warden.png", carry:3, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:3, pusher:0, initiator:0, complexity:3, melee:0, ranged:1};
+	heroList[5] = {name:"Axe", imgsrc:"images/axe.png", carry:0, support:0, nuker:0, disabler:2, jungler:2, durable:3, escape:0, pusher:0, initiator:3, complexity:1, melee:1, ranged:0};
+	heroList[6] = {name:"Bane", imgsrc:"images/bane.png", carry:0, support:2, nuker:1, disabler:3, jungler:0, durable:1, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[7] = {name:"Batrider", imgsrc:"images/batrider.png", carry:0, support:0, nuker:0, disabler:2, jungler:2, durable:0, escape:1, pusher:0, initiator:3, complexity:2, melee:0, ranged:1};
+	heroList[8] = {name:"Beastmaster", imgsrc:"images/beastmaster.png", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
+	heroList[9] = {name:"Bloodseeker", imgsrc:"images/bloodseeker.png", carry:1, support:0, nuker:1, disabler:1, jungler:1, durable:0, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
+	heroList[10] = {name:"Bounty Hunter", imgsrc:"images/bounty_hunter.png", carry:0, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:2, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
+	heroList[11] = {name:"Brewmaster", imgsrc:"images/brewmaster.png", carry:1, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:3, complexity:3, melee:1, ranged:0};
+	heroList[12] = {name:"Bristleback", imgsrc:"images/bristleback.png", carry:2, support:0, nuker:1, disabler:0, jungler:0, durable:3, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
+	heroList[13] = {name:"Broodmother", imgsrc:"images/broodmother.png", carry:1, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:3, pusher:3, initiator:0, complexity:2, melee:1, ranged:0};
+	heroList[14] = {name:"Centaur Warrunner", imgsrc:"images/centaur.png", carry:0, support:0, nuker:1, disabler:1, jungler:0, durable:3, escape:1, pusher:0, initiator:3, complexity:1, melee:1, ranged:0};
+	heroList[15] = {name:"Chaos Knight", imgsrc:"images/chaos_knight.png", carry:3, support:0, nuker:0, disabler:2, jungler:0, durable:2, escape:0, pusher:2, initiator:1, complexity:1, melee:1, ranged:0};
+	heroList[16] = {name:"Chen", imgsrc:"images/chen.png", carry:0, support:2, nuker:0, disabler:0, jungler:3, durable:0, escape:0, pusher:2, initiator:0, complexity:3, melee:0, ranged:1};
+	heroList[17] = {name:"Clinkz", imgsrc:"images/clinkz.png", carry:2, support:0, nuker:0, disabler:0, jungler:0, durable:0, escape:3, pusher:1, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[18] = {name:"Clockwerk", imgsrc:"images/clockwerk.png", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:1, escape:0, pusher:0, initiator:3, complexity:2, melee:1, ranged:0};
+	heroList[19] = {name:"Crystal Maiden", imgsrc:"images/crystal_maiden.png", carry:0, support:3, nuker:2, disabler:2, jungler:1, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[20] = {name:"Dark Seer", imgsrc:"images/dark_seer.png", carry:0, support:0, nuker:0, disabler:1, jungler:1, durable:0, escape:1, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
+	heroList[21] = {name:"Dazzle", imgsrc:"images/dazzle.png", carry:0, support:3, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[22] = {name:"Death Prophet", imgsrc:"images/death_prophet.png", carry:1, support:0, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:3, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[23] = {name:"Disruptor", imgsrc:"images/disruptor.png", carry:0, support:2, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:1, complexity:2, melee:0, ranged:1};
+	heroList[24] = {name:"Doom", imgsrc:"images/doom_bringer.png", carry:1, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
+	heroList[25] = {name:"Dragon Knight", imgsrc:"images/dragon_knight.png", carry:2, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:3, initiator:1, complexity:1, melee:1, ranged:0};
+	heroList[26] = {name:"Drow Ranger", imgsrc:"images/drow_ranger.png", carry:2, support:0, nuker:0, disabler:1, jungler:0, durable:0, escape:0, pusher:1, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[27] = {name:"Earth Spirit", imgsrc:"images/earth_spirit.png", carry:0, support:0, nuker:2, disabler:1, jungler:0, durable:1, escape:2, pusher:0, initiator:1, complexity:3, melee:1, ranged:0};
+	heroList[28] = {name:"Earthshaker", imgsrc:"images/earthshaker.png", carry:0, support:1, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:3, complexity:2, melee:1, ranged:0};
+	heroList[29] = {name:"Elder Titan", imgsrc:"images/elder_titan.png", carry:0, support:0, nuker:1, disabler:1, jungler:0, durable:1, escape:0, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
+	heroList[30] = {name:"Ember Spirit", imgsrc:"images/ember_spirit.png", carry:2, support:0, nuker:1, disabler:1, jungler:0, durable:0, escape:3, pusher:0, initiator:1, complexity:2, melee:1, ranged:0};
+	heroList[31] = {name:"Enchantress", imgsrc:"images/enchantress.png", carry:0, support:2, nuker:0, disabler:1, jungler:3, durable:1, escape:0, pusher:2, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[32] = {name:"Enigma", imgsrc:"images/enigma.png", carry:0, support:0, nuker:0, disabler:2, jungler:3, durable:0, escape:0, pusher:2, initiator:2, complexity:2, melee:0, ranged:1};
+	heroList[33] = {name:"Faceless Void", imgsrc:"images/faceless_void.png", carry:2, support:0, nuker:0, disabler:2, jungler:0, durable:1, escape:1, pusher:0, initiator:3, complexity:2, melee:1, ranged:0};
+	heroList[34] = {name:"Gyrocopter", imgsrc:"images/gyrocopter.png", carry:3, support:0, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[35] = {name:"Huskar", imgsrc:"images/huskar.png", carry:2, support:0, nuker:0, disabler:0, jungler:0, durable:2, escape:0, pusher:0, initiator:1, complexity:1, melee:0, ranged:1};
+	heroList[36] = {name:"Invoker", imgsrc:"images/invoker.png", carry:1, support:0, nuker:3, disabler:2, jungler:0, durable:0, escape:1, pusher:1, initiator:0, complexity:3, melee:0, ranged:1};
+	heroList[37] = {name:"Io", imgsrc:"images/io.png", carry:0, support:3, nuker:1, disabler:0, jungler:0, durable:0, escape:2, pusher:0, initiator:0, complexity:3, melee:0, ranged:1};
+	heroList[38] = {name:"Jakiro", imgsrc:"images/jakiro.png", carry:0, support:1, nuker:2, disabler:1, jungler:0, durable:0, escape:0, pusher:2, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[39] = {name:"Juggernaut", imgsrc:"images/juggernaut.png", carry:2, support:0, nuker:0, disabler:0, jungler:0, durable:0, escape:1, pusher:1, initiator:0, complexity:1, melee:1, ranged:0};
+	heroList[40] = {name:"Keeper of the Light", imgsrc:"images/keeper_of_the_light.png", carry:0, support:3, nuker:2, disabler:1, jungler:1, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[41] = {name:"Kunkka", imgsrc:"images/kunkka.png", carry:1, support:0, nuker:1, disabler:1, jungler:0, durable:1, escape:0, pusher:0, initiator:1, complexity:2, melee:1, ranged:0};
+	heroList[42] = {name:"Legion Commander", imgsrc:"images/legion_commander.png", carry:1, support:0, nuker:1, disabler:2, jungler:0, durable:1, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
+	heroList[43] = {name:"Leshrac", imgsrc:"images/leshrac.png", carry:1, support:1, nuker:3, disabler:1, jungler:0, durable:0, escape:0, pusher:3, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[44] = {name:"Lich", imgsrc:"images/lich.png", carry:0, support:3, nuker:2, disabler:0, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[45] = {name:"Lifestealer", imgsrc:"images/life_stealer.png", carry:2, support:0, nuker:0, disabler:1, jungler:1, durable:2, escape:1, pusher:0, initiator:0, complexity:2, melee:1, ranged:0};
+	heroList[46] = {name:"Lina", imgsrc:"images/lina.png", carry:1, support:1, nuker:3, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[47] = {name:"Lion", imgsrc:"images/lion.png", carry:0, support:2, nuker:3, disabler:3, jungler:0, durable:0, escape:0, pusher:0, initiator:2, complexity:1, melee:0, ranged:1};
+	heroList[48] = {name:"Lone Druid", imgsrc:"images/lone_druid.png", carry:2, support:0, nuker:0, disabler:0, jungler:1, durable:1, escape:0, pusher:3, initiator:0, complexity:3, melee:0, ranged:1};
+	heroList[49] = {name:"Luna", imgsrc:"images/luna.png", carry:2, support:0, nuker:2, disabler:0, jungler:0, durable:0, escape:0, pusher:1, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[50] = {name:"Lycan", imgsrc:"images/lycan.png", carry:2, support:0, nuker:0, disabler:0, jungler:1, durable:1, escape:1, pusher:3, initiator:0, complexity:2, melee:1, ranged:0};
+	heroList[51] = {name:"Magnus", imgsrc:"images/magnus.png", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:0, escape:1, pusher:0, initiator:3, complexity:2, melee:1, ranged:0};
+	heroList[52] = {name:"Medusa", imgsrc:"images/medusa.png", carry:3, support:0, nuker:0, disabler:1, jungler:0, durable:1, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[53] = {name:"Meepo", imgsrc:"images/meepo.png", carry:2, support:0, nuker:2, disabler:1, jungler:0, durable:0, escape:2, pusher:1, initiator:1, complexity:3, melee:1, ranged:0};
+	heroList[54] = {name:"Mirana", imgsrc:"images/mirana.png", carry:1, support:1, nuker:1, disabler:1, jungler:0, durable:0, escape:2, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[55] = {name:"Monkey King", imgsrc:"images/monkey_king.png", carry:2, support:0, nuker:0, disabler:1, jungler:0, durable:0, escape:2, pusher:0, initiator:1, complexity:2, melee:1, ranged:0};
+	heroList[56] = {name:"Morphling", imgsrc:"images/morphling.png", carry:3, support:0, nuker:1, disabler:1, jungler:0, durable:2, escape:3, pusher:0, initiator:0, complexity:3, melee:0, ranged:1};
+	heroList[57] = {name:"Naga Siren", imgsrc:"images/naga_siren.png", carry:3, support:1, nuker:0, disabler:2, jungler:0, durable:0, escape:1, pusher:2, initiator:1, complexity:2, melee:1, ranged:0};
+	heroList[58] = {name:"Nature's Prophet", imgsrc:"images/natures_prophet.png", carry:1, support:0, nuker:1, disabler:0, jungler:3, durable:0, escape:1, pusher:3, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[59] = {name:"Necrophos", imgsrc:"images/necrophos.png", carry:1, support:0, nuker:2, disabler:1, jungler:0, durable:1, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[60] = {name:"Night Stalker", imgsrc:"images/night_stalker.png", carry:1, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:2, complexity:1, melee:1, ranged:0};
+	heroList[61] = {name:"Nyx Assassin", imgsrc:"images/nyx_assassin.png", carry:0, support:0, nuker:2, disabler:2, jungler:0, durable:0, escape:1, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
+	heroList[62] = {name:"Ogre Magi", imgsrc:"images/ogre_magi.png", carry:0, support:2, nuker:2, disabler:2, jungler:0, durable:1, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
+	heroList[63] = {name:"Omniknight", imgsrc:"images/omniknight.png", carry:0, support:2, nuker:1, disabler:0, jungler:0, durable:1, escape:0, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
+	heroList[64] = {name:"Oracle", imgsrc:"images/oracle.png", carry:0, support:3, nuker:3, disabler:2, jungler:0, durable:0, escape:1, pusher:0, initiator:0, complexity:3, melee:0, ranged:1};
+	heroList[65] = {name:"Outhouse Decorator", imgsrc:"images/outworld_devourer.png", carry:2, support:0, nuker:2, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[66] = {name:"Phantom Assassin", imgsrc:"images/phantom_assassin.png", carry:3, support:0, nuker:0, disabler:0, jungler:0, durable:0, escape:1, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
+	heroList[67] = {name:"Phantom Lancer", imgsrc:"images/phantom_lancer.png", carry:2, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:2, pusher:1, initiator:0, complexity:2, melee:1, ranged:0};
+	heroList[68] = {name:"Phoenix", imgsrc:"images/phoenix.png", carry:0, support:1, nuker:3, disabler:1, jungler:0, durable:0, escape:2, pusher:0, initiator:2, complexity:2, melee:0, ranged:1};
+	heroList[69] = {name:"Puck", imgsrc:"images/puck.png", carry:0, support:0, nuker:2, disabler:3, jungler:0, durable:0, escape:3, pusher:0, initiator:3, complexity:2, melee:0, ranged:1};
+	heroList[70] = {name:"Pudge", imgsrc:"images/pudge.png", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
+	heroList[71] = {name:"Pugna", imgsrc:"images/pugna.png", carry:0, support:0, nuker:2, disabler:0, jungler:0, durable:0, escape:0, pusher:2, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[72] = {name:"Queen of Pain", imgsrc:"images/queenofpain.png", carry:1, support:0, nuker:3, disabler:0, jungler:0, durable:0, escape:3, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[73] = {name:"Razor", imgsrc:"images/razor.png", carry:2, support:0, nuker:1, disabler:0, jungler:0, durable:2, escape:0, pusher:1, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[74] = {name:"Riki", imgsrc:"images/riki.png", carry:2, support:0, nuker:0, disabler:1, jungler:0, durable:0, escape:2, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
+	heroList[75] = {name:"Rubick", imgsrc:"images/rubick.png", carry:0, support:2, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:3, melee:0, ranged:1};
+	heroList[76] = {name:"Sand King", imgsrc:"images/sand_king.png", carry:0, support:0, nuker:2, disabler:2, jungler:1, durable:0, escape:2, pusher:0, initiator:3, complexity:2, melee:1, ranged:0};
+	heroList[77] = {name:"Shadow Demon", imgsrc:"images/shadow_demon.png", carry:0, support:2, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:1, complexity:2, melee:0, ranged:1};
+	heroList[78] = {name:"Shadow Fiend", imgsrc:"images/shadow_fiend.png", carry:2, support:0, nuker:3, disabler:0, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[79] = {name:"Shadow Shaman", imgsrc:"images/shadow_shaman.png", carry:0, support:2, nuker:2, disabler:3, jungler:0, durable:0, escape:0, pusher:3, initiator:1, complexity:1, melee:0, ranged:1};
+	heroList[80] = {name:"Silencer", imgsrc:"images/silencer.png", carry:1, support:1, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:2, complexity:2, melee:0, ranged:1};
+	heroList[81] = {name:"Skywrath Mage", imgsrc:"images/skywrath_mage.png", carry:0, support:2, nuker:3, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[82] = {name:"Slardar", imgsrc:"images/slardar.png", carry:2, support:0, nuker:0, disabler:1, jungler:0, durable:2, escape:1, pusher:0, initiator:2, complexity:1, melee:1, ranged:0};
+	heroList[83] = {name:"Slark", imgsrc:"images/slark.png", carry:2, support:0, nuker:1, disabler:1, jungler:0, durable:0, escape:3, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
+	heroList[84] = {name:"Sniper", imgsrc:"images/sniper.png", carry:3, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[85] = {name:"Spectre", imgsrc:"images/spectre.png", carry:3, support:0, nuker:0, disabler:0, jungler:0, durable:1, escape:1, pusher:0, initiator:0, complexity:2, melee:1, ranged:0};
+	heroList[86] = {name:"Spirit Breaker", imgsrc:"images/spirit_breaker.png", carry:1, support:0, nuker:0, disabler:2, jungler:0, durable:2, escape:1, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
+	heroList[87] = {name:"Storm Spirit", imgsrc:"images/storm_spirit.png", carry:2, support:0, nuker:2, disabler:1, jungler:0, durable:0, escape:3, pusher:0, initiator:1, complexity:3, melee:0, ranged:1};
+	heroList[88] = {name:"Sven", imgsrc:"images/sven.png", carry:2, support:0, nuker:1, disabler:2, jungler:0, durable:2, escape:0, pusher:0, initiator:2, complexity:1, melee:1, ranged:0};
+	heroList[89] = {name:"Techies", imgsrc:"images/techies.png", carry:0, support:0, nuker:3, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[90] = {name:"Templar Assassin", imgsrc:"images/templar_assassin.png", carry:2, support:0, nuker:0, disabler:0, jungler:0, durable:0, escape:1, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[91] = {name:"Terrorblade", imgsrc:"images/terrorblade.png", carry:3, support:0, nuker:1, disabler:0, jungler:0, durable:0, escape:0, pusher:2, initiator:0, complexity:2, melee:1, ranged:0};
+	heroList[92] = {name:"Tidehunter", imgsrc:"images/tidehunter.png", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:3, escape:0, pusher:0, initiator:3, complexity:1, melee:1, ranged:0};
+	heroList[93] = {name:"Timbersaw", imgsrc:"images/timbersaw.png", carry:0, support:0, nuker:3, disabler:0, jungler:0, durable:2, escape:2, pusher:0, initiator:0, complexity:2, melee:1, ranged:0};
+	heroList[94] = {name:"Tinker", imgsrc:"images/tinker.png", carry:1, support:0, nuker:3, disabler:0, jungler:0, durable:0, escape:0, pusher:2, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[95] = {name:"Tiny", imgsrc:"images/tiny.png", carry:3, support:0, nuker:2, disabler:1, jungler:0, durable:2, escape:0, pusher:2, initiator:2, complexity:1, melee:1, ranged:0};
+	heroList[96] = {name:"Treant Protector", imgsrc:"images/treant.png", carry:0, support:3, nuker:0, disabler:1, jungler:0, durable:1, escape:1, pusher:0, initiator:2, complexity:2, melee:1, ranged:0};
+	heroList[97] = {name:"Troll Warlord", imgsrc:"images/troll_warlord.png", carry:3, support:0, nuker:0, disabler:1, jungler:0, durable:1, escape:0, pusher:2, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[98] = {name:"Tusk", imgsrc:"images/tusk.png", carry:0, support:0, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:2, complexity:1, melee:1, ranged:0};
+	heroList[99] = {name:"Underlord", imgsrc:"images/underlord.png", carry:0, support:1, nuker:1, disabler:1, jungler:0, durable:1, escape:2, pusher:0, initiator:0, complexity:2, melee:1, ranged:0};
+	heroList[100] = {name:"Undying", imgsrc:"images/undying.png", carry:0, support:1, nuker:1, disabler:1, jungler:0, durable:2, escape:0, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
+	heroList[101] = {name:"Ursa", imgsrc:"images/ursa.png", carry:2, support:0, nuker:0, disabler:1, jungler:1, durable:1, escape:0, pusher:0, initiator:0, complexity:1, melee:1, ranged:0};
+	heroList[102] = {name:"Vengeful Spirit", imgsrc:"images/vengefulspirit.png", carry:0, support:3, nuker:1, disabler:2, jungler:0, durable:0, escape:1, pusher:0, initiator:2, complexity:1, melee:0, ranged:1};
+	heroList[103] = {name:"Venomancer", imgsrc:"images/venomancer.png", carry:0, support:2, nuker:1, disabler:1, jungler:0, durable:0, escape:0, pusher:1, initiator:1, complexity:1, melee:0, ranged:1};
+	heroList[104] = {name:"Viper", imgsrc:"images/viper.png", carry:1, support:0, nuker:0, disabler:1, jungler:0, durable:2, escape:0, pusher:0, initiator:1, complexity:1, melee:0, ranged:1};
+	heroList[105] = {name:"Visage", imgsrc:"images/visage.png", carry:0, support:1, nuker:2, disabler:1, jungler:0, durable:1, escape:0, pusher:1, initiator:0, complexity:3, melee:0, ranged:1};
+	heroList[106] = {name:"Warlock", imgsrc:"images/warlock.png", carry:0, support:1, nuker:0, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:2, complexity:1, melee:0, ranged:1};
+	heroList[107] = {name:"Weaver", imgsrc:"images/weaver.png", carry:2, support:0, nuker:0, disabler:0, jungler:0, durable:0, escape:3, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[108] = {name:"Windranger", imgsrc:"images/windrunner.png", carry:1, support:1, nuker:1, disabler:1, jungler:0, durable:0, escape:1, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[109] = {name:"Winter Wyvern", imgsrc:"images/winter_wyvern.png", carry:0, support:3, nuker:1, disabler:2, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:2, melee:0, ranged:1};
+	heroList[110] = {name:"Witch Doctor", imgsrc:"images/witch_doctor.png", carry:0, support:3, nuker:2, disabler:1, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
+	heroList[111] = {name:"Wraith King", imgsrc:"images/wraith_king.png", carry:2, support:1, nuker:0, disabler:2, jungler:0, durable:3, escape:0, pusher:0, initiator:1, complexity:1, melee:1, ranged:0};
+	heroList[112] = {name:"Zeus", imgsrc:"images/zeus.png", carry:0, support:0, nuker:3, disabler:0, jungler:0, durable:0, escape:0, pusher:0, initiator:0, complexity:1, melee:0, ranged:1};
 }
