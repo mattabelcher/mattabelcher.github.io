@@ -1,19 +1,37 @@
+.container {
+	width: 100%;
+	height: 615px;
+}
+
 .selection_area{
 	background-color: rgb(10, 18, 22); 
 	color: rgb(68, 92, 132);
 	font-size: 20px;
-	width: 480px;
+	width: 500px;
 	vertical-align: text-top;
-}
-
-.the_table {
-	width: 100%;
+	float: left;
+	padding: 0px 10px 0px 0px;
 }
 
 .display_area {
+	width: 325px;
+	float: left;
+}
+
+
+.prompt_area {
 	color: rgb(68,92,132);
 	font-size: 18px;
+	width: auto;
+	float: left;
 }
+
+.heroes {
+	border: 2px solid rgb(10, 18, 22);
+	align-content: left;
+}
+
+
 
 .comp_button {
 	background-color: rgb(68, 92, 132); /* Green */
@@ -44,14 +62,29 @@ a:hover {
   position: relative;
 }
 
-a[data]:hover:after {
+a[comps]:hover:after {
   width: 190px;
   font-size: 18px;
-  content: attr(data);
+  content: attr(comps);
   padding: 4px 8px;
   position: absolute;
   left: 0;
   top: 100%;
+  white-space: pre-wrap;
+  z-index: 2;
+  border-radius: 5px ;
+  background: rgba(10,18,22,0.95);
+  pointer-events: none;
+}
+
+a[hero]:hover:after {
+  width: 190px;
+  font-size: 18px;
+  content: attr(hero);
+  padding: 4px 8px;
+  position: absolute;
+  left: 0;
+  bottom: 100%;
   white-space: pre-wrap;
   z-index: 2;
   border-radius: 5px ;

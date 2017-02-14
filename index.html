@@ -8,9 +8,8 @@
 </head>
 
 <body>
-  <table class="the_table" border="0">
-  <tr>
-  	<td class="selection_area">
+  <div class="container" border="1">
+  	<div class="selection_area">
   	<div>
   	  <p>Carry
       <img id="CarryPlus" src="images/PressedPlus.jpg" align="right" onclick="togglePlus('CarryPlus', 'carry')">
@@ -182,18 +181,18 @@
     <div>
       <button type="button" class="comp_button" onclick="beginCompSearch()">Find Comps</button>
     </div>
-  	</td>
-  	<td>
-  	  <div class="display_area">
-        <div>
-  	  	  <p id="displayArea">Select the values you want your team to have.</p>
-        </div>
-        <div>
-          <p id="progressArea"></p>
-        </div>
-  	  </div>
-  	</td>
-  </tr>
-  </table>
+  	</div>
+  	<div class="display_area">
+      <div>
+  		  <p id="displayComps"></p>
+      </div>
+  	</div>
+  	<div class="prompt_area">
+      <p id="displayArea">Select the values you want your team to have.</p>
+    </div>
+  </div>
+  <div class="hero_area">
+    <p id="displayHeroes"></p>
+  </div>
 </body>
 </html>
