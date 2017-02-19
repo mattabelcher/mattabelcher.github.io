@@ -1,3 +1,10 @@
+/*****************************
+* Created by Matthew Belcher *
+* mattabelcher.github.io/    *
+* 2 / 18 / 2017				 *
+*****************************/
+
+// User input variables
 var carry = 6;
 var support = 7;
 var nuker = 5;
@@ -10,7 +17,6 @@ var initiator = 6;
 var complexity = 5;
 var melee = 2;
 var ranged = 3;
-var heroList = [113];
 var carryPlus = true;
 var supportPlus = true;
 var nukerPlus = true;
@@ -23,53 +29,104 @@ var initiatorPlus = true;
 var complexityPlus = true;
 var meleePlus = true;
 var rangedPlus = true;
+
+// Stores hero data
+var heroList = [113];
+
+// Stores specific hero input
 var selectedHeroes = [];
 var ignoredHeroes = [];
 
+// Load hero data on page load
 document.addEventListener('DOMContentLoaded', function(){
 	loadHeroes();
 }, false);
 
- function selectValue(btn, type) {
- 	var unpress = 0;
-    var img = document.getElementById(btn).src;
-    if (type === 'complexity'){
+/*
+This function takes input when clicking on specific value buttons
+First parameter is the button id, ie: PusherButton6
+Second parameter is the type of button, used in a switch statement
+
+What it performs:
+Toggles the image of the button between pressed and unpressed
+Updates user input variables
+*/
+function selectValue(btn, type) {
+ 	var unpress = 0;								// Determines value when unpressing a button
+    var img = document.getElementById(btn).src;		// Holds src value of the image of the button
+
+    // Requires special case due to the nature of the complexity hero stat
+    if (type === 'complexity'){						
     	if (img.indexOf('images/UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 0; i--){
 	        	document.getElementById('ComplexityButton' + i).src  = 'images/PressedButton.jpg';
-	        	unpress = 0;
 	        }
+	        unpress = 0;
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 10; i++){
 	    		document.getElementById('ComplexityButton' + i).src  = 'images/UnpressedButton.jpg';
-	    		unpress = -1;
 	    	}
+	    	unpress = -1;
 	   	}
-    } else if (type === 'melee' || type === 'ranged'){
+
+	// Requires special case due to the nature of the melee hero stat
+	// Restricts instances where melee + ranged > 5
+    } else if (type === 'melee'){					
 		if (img.indexOf('images/UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 1; i--){
-	        	document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'images/PressedButton.jpg';
-	        	unpress = 0;
+	        	document.getElementById('MeleeButton' + i).src  = 'images/PressedButton.jpg';
 	        }
+	        if (document.getElementById('RangedButton' + (6 - btn[btn.length-1])).src  = 'images/PressedButton.jpg'){
+		        for (var i = 6 - btn[btn.length-1]; i < 6; i++){
+		        	document.getElementById('RangedButton' + i).src  = 'images/UnpressedButton.jpg';
+		        }
+		        ranged = 5 - parseInt(btn[btn.length-1]);
+		    }
+	        unpress = 0;
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 6; i++){
-	    		document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'images/UnpressedButton.jpg';
-	    		unpress = -1;
+	    		document.getElementById('MeleeButton' + i).src  = 'images/UnpressedButton.jpg';
 	    	}
+	    	unpress = -1;
 	   	}
-    } else {
+
+	// Requires special case due to the nature of the ranged hero stat
+	// Restricts instances where melee + ranged > 5
+    } else if (type === 'ranged'){
+		if (img.indexOf('images/UnpressedButton.jpg')!=-1) {
+	    	for (var i = btn[btn.length-1]; i >= 1; i--){
+	        	document.getElementById('RangedButton' + i).src  = 'images/PressedButton.jpg';	
+	        }
+	        if (document.getElementById('MeleeButton' + (6 - btn[btn.length-1])).src  = 'images/PressedButton.jpg'){
+		        for (var i = 6 - btn[btn.length-1]; i < 6; i++){
+		        	document.getElementById('MeleeButton' + i).src  = 'images/UnpressedButton.jpg';
+		        }
+		        melee = 5 - parseInt(btn[btn.length-1]);
+		    }
+		    unpress = 0;
+	    } else {
+	    	for (var i = btn[btn.length-1]; i < 6; i++){
+	    		document.getElementById('RangedButton' + i).src  = 'images/UnpressedButton.jpg';
+	    	}
+	    	unpress = -1;
+	   	}
+
+	// All other cases
+    }else {
 	    if (img.indexOf('images/UnpressedButton.jpg')!=-1) {
 	    	for (var i = btn[btn.length-1]; i >= 1; i--){
 	        	document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'images/PressedButton.jpg';
-	        	unpress = 0;
 	        }
+	        unpress = 0;
 	    } else {
 	    	for (var i = btn[btn.length-1]; i < 9; i++){
 	    		document.getElementById(btn.substring(0,btn.length-1) + i).src  = 'images/UnpressedButton.jpg';
-	    		unpress = -1;
 	    	}
+	    	unpress = -1;
 	   	}
 	}
+
+	// Processes button click into desired input based on button type and button id
    	switch (type) {
    		case 'carry':
    			carry = parseInt(btn[btn.length-1]) + unpress;
@@ -112,9 +169,20 @@ document.addEventListener('DOMContentLoaded', function(){
    }
 }
 
+/*
+This function takes input when clicking on buttons
+First parameter is the button id, ie: InitiatorPlus
+Second parameter is the type of button, used in a switch statement
+
+What it performs:
+Toggles the image of the button between pressed and unpressed
+Updates user input variables
+*/
+
 function togglePlus(btn, type){
-	var toggle = false;
-	var img = document.getElementById(btn).src;
+	var toggle = false;								// Default case
+	var img = document.getElementById(btn).src;		// Holds src value of the image of the button
+
 	if (img.indexOf('images/UnpressedPlus.jpg')!=-1) {
 	    document.getElementById(btn).src  = 'images/PressedPlus.jpg';
 	    toggle = true;
@@ -122,6 +190,7 @@ function togglePlus(btn, type){
 		document.getElementById(btn).src  = 'images/UnpressedPlus.jpg';
 	}
 
+	// Processes button click into desired input based on button type
 	switch (type) {
    		case 'carry':
    			carryPlus = toggle;
@@ -164,6 +233,11 @@ function togglePlus(btn, type){
    }
 }
 
+/*
+This function displays status information to the user before performing the search
+Executes when "Find comps" button is pressed
+*/
+
 function beginCompSearch(){
 	document.getElementById('displayArea').innerHTML = "Finding comps. This may take a moment. <br>";
 	document.getElementById('displayComps').innerHTML = "";
@@ -188,6 +262,30 @@ function findComps(){
 						for (var e = positionFour; e < heroList.length; e++){
 							pass = true;
 							while(pass){
+								if (selectedHeroes.length > 0){
+									var breaker = false;
+									for (var f = 0; f < selectedHeroes.length; f++){
+										if( !(selectedHeroes[f] == heroList[a].name || selectedHeroes[f] == heroList[b].name || selectedHeroes[f] == heroList[c].name || selectedHeroes[f] == heroList[d].name || selectedHeroes[f] == heroList[e].name)){
+											breaker = true;
+										}
+									}
+									if (breaker){
+										break;
+									}
+								}
+
+								if (ignoredHeroes.length > 0){
+									var breaker = false;
+									for (var f = 0; f < ignoredHeroes.length; f++){
+										if(ignoredHeroes[f] == heroList[a].name || ignoredHeroes[f] == heroList[b].name || ignoredHeroes[f] == heroList[c].name || ignoredHeroes[f] == heroList[d].name || ignoredHeroes[f] == heroList[e].name){
+											breaker = true;
+										}
+									}
+									if (breaker){
+										break;
+									}
+								}
+
 								if(carryPlus){
 									if (!(heroList[a].carry + heroList[b].carry + heroList[c].carry + heroList[d].carry + heroList[e].carry >= carry)){
 										break;
@@ -307,30 +405,6 @@ function findComps(){
 										break;
 									}
 								}
-
-								if (selectedHeroes.length > 0){
-									var breaker = false;
-									for (var f = 0; f < selectedHeroes.length; f++){
-										if( !(selectedHeroes[f] == heroList[a].name || selectedHeroes[f] == heroList[b].name || selectedHeroes[f] == heroList[c].name || selectedHeroes[f] == heroList[d].name || selectedHeroes[f] == heroList[e].name)){
-											breaker = true;
-										}
-									}
-									if (breaker){
-										break;
-									}
-								}
-
-								if (ignoredHeroes.length > 0){
-									var breaker = false;
-									for (var f = 0; f < ignoredHeroes.length; f++){
-										if(ignoredHeroes[f] == heroList[a].name || ignoredHeroes[f] == heroList[b].name || ignoredHeroes[f] == heroList[c].name || ignoredHeroes[f] == heroList[d].name || ignoredHeroes[f] == heroList[e].name){
-											breaker = true;
-										}
-									}
-									if (breaker){
-										break;
-									}
-								}
 								
 								document.getElementById('displayComps').innerHTML += "<a comps=\"" + heroList[a].name + "\nCarry: " + heroList[a].carry + "\nSupport: " + heroList[a].support + "\nNuker: " + heroList[a].nuker + "\nDisabler: " + heroList[a].disabler + "\nJungler: " + heroList[a].jungler + "\nDurabler: " + heroList[a].durable + "\nEscape: " + heroList[a].escape + "\nPusher: " + heroList[a].pusher + "\nInitiator: " + heroList[a].initiator + "\nComplexity: " + heroList[a].complexity + "\"><img src=\"" + heroList[a].imgsrc + "\"> </a>";
 								document.getElementById('displayComps').innerHTML += "<a comps=\"" + heroList[b].name + "\nCarry: " + heroList[b].carry + "\nSupport: " + heroList[b].support + "\nNuker: " + heroList[b].nuker + "\nDisabler: " + heroList[b].disabler + "\nJungler: " + heroList[b].jungler + "\nDurabler: " + heroList[b].durable + "\nEscape: " + heroList[b].escape + "\nPusher: " + heroList[b].pusher + "\nInitiator: " + heroList[b].initiator + "\nComplexity: " + heroList[b].complexity + "\"><img src=\"" + heroList[b].imgsrc + "\"> </a>";
@@ -373,16 +447,21 @@ function findComps(){
 
 function selectHero(hero){
 	if (document.getElementById(hero).style.borderColor == "green"){
-		document.getElementById(hero).style.borderColor = "red"; 
-		selectedHeroes.pop(hero);
+		document.getElementById(hero).style.borderColor = "red";
+		var heroIndex = selectedHeroes.indexOf(hero);
+		selectedHeroes.splice(heroIndex, 1);
 		ignoredHeroes.push(hero);
 	} else if (document.getElementById(hero).style.borderColor == "red"){
 		document.getElementById(hero).style.borderColor = "rgb(10, 18, 22)";
-		ignoredHeroes.pop(hero);
-	} else {
+		var heroIndex = ignoredHeroes.indexOf(hero);
+		ignoredHeroes.splice(heroIndex, 1);
+	} else if (selectedHeroes.length < 4){
 		document.getElementById(hero).style.borderColor = "green"; 
 		selectedHeroes.push(hero);
-	} 
+	} else {
+		document.getElementById(hero).style.borderColor = "red"; 
+		ignoredHeroes.push(hero);
+	}
 }
 
 function loadHeroes(){
@@ -521,7 +600,7 @@ function loadHeroes(){
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[42].name + "\nCarry: " + heroList[42].carry + "\nSupport: " + heroList[42].support + "\nNuker: " + heroList[42].nuker + "\nDisabler: " + heroList[42].disabler + "\nJungler: " + heroList[42].jungler + "\nDurabler: " + heroList[42].durable + "\nEscape: " + heroList[42].escape + "\nPusher: " + heroList[42].pusher + "\nInitiator: " + heroList[42].initiator + "\nComplexity: " + heroList[42].complexity + "\"><img id=\"" + heroList[42].name + "\" class=\"heroes\" src=\"" + heroList[42].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[45].name + "\nCarry: " + heroList[45].carry + "\nSupport: " + heroList[45].support + "\nNuker: " + heroList[45].nuker + "\nDisabler: " + heroList[45].disabler + "\nJungler: " + heroList[45].jungler + "\nDurabler: " + heroList[45].durable + "\nEscape: " + heroList[45].escape + "\nPusher: " + heroList[45].pusher + "\nInitiator: " + heroList[45].initiator + "\nComplexity: " + heroList[45].complexity + "\"><img id=\"" + heroList[45].name + "\" class=\"heroes\" src=\"" + heroList[45].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[50].name + "\nCarry: " + heroList[50].carry + "\nSupport: " + heroList[50].support + "\nNuker: " + heroList[50].nuker + "\nDisabler: " + heroList[50].disabler + "\nJungler: " + heroList[50].jungler + "\nDurabler: " + heroList[50].durable + "\nEscape: " + heroList[50].escape + "\nPusher: " + heroList[50].pusher + "\nInitiator: " + heroList[50].initiator + "\nComplexity: " + heroList[50].complexity + "\"><img id=\"" + heroList[50].name + "\" class=\"heroes\" src=\"" + heroList[50].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
-	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[51].name + "\nCarry: " + heroList[51].carry + "\nSupport: " + heroList[51].support + "\nNuker: " + heroList[51].nuker + "\nDisabler: " + heroList[51].disabler + "\nJungler: " + heroList[51].jungler + "\nDurabler: " + heroList[51].durable + "\nEscape: " + heroList[51].escape + "\nPusher: " + heroList[51].pusher + "\nInitiator: " + heroList[51].initiator + "\nComplexity: " + heroList[51].complexity + "\"><img id=\"" + heroList[51].name + "\" class=\"heroes\" src=\"" + heroList[51].imgsrc + "\" onclick=\"selectHero(this.id)\"></a><br>";
+	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[51].name + "\nCarry: " + heroList[51].carry + "\nSupport: " + heroList[51].support + "\nNuker: " + heroList[51].nuker + "\nDisabler: " + heroList[51].disabler + "\nJungler: " + heroList[51].jungler + "\nDurabler: " + heroList[51].durable + "\nEscape: " + heroList[51].escape + "\nPusher: " + heroList[51].pusher + "\nInitiator: " + heroList[51].initiator + "\nComplexity: " + heroList[51].complexity + "\"><img id=\"" + heroList[51].name + "\" class=\"heroes\" src=\"" + heroList[51].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[60].name + "\nCarry: " + heroList[60].carry + "\nSupport: " + heroList[60].support + "\nNuker: " + heroList[60].nuker + "\nDisabler: " + heroList[60].disabler + "\nJungler: " + heroList[60].jungler + "\nDurabler: " + heroList[60].durable + "\nEscape: " + heroList[60].escape + "\nPusher: " + heroList[60].pusher + "\nInitiator: " + heroList[60].initiator + "\nComplexity: " + heroList[60].complexity + "\"><img id=\"" + heroList[60].name + "\" class=\"heroes\" src=\"" + heroList[60].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[63].name + "\nCarry: " + heroList[63].carry + "\nSupport: " + heroList[63].support + "\nNuker: " + heroList[63].nuker + "\nDisabler: " + heroList[63].disabler + "\nJungler: " + heroList[63].jungler + "\nDurabler: " + heroList[63].durable + "\nEscape: " + heroList[63].escape + "\nPusher: " + heroList[63].pusher + "\nInitiator: " + heroList[63].initiator + "\nComplexity: " + heroList[63].complexity + "\"><img id=\"" + heroList[63].name + "\" class=\"heroes\" src=\"" + heroList[63].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[68].name + "\nCarry: " + heroList[68].carry + "\nSupport: " + heroList[68].support + "\nNuker: " + heroList[68].nuker + "\nDisabler: " + heroList[68].disabler + "\nJungler: " + heroList[68].jungler + "\nDurabler: " + heroList[68].durable + "\nEscape: " + heroList[68].escape + "\nPusher: " + heroList[68].pusher + "\nInitiator: " + heroList[68].initiator + "\nComplexity: " + heroList[68].complexity + "\"><img id=\"" + heroList[68].name + "\" class=\"heroes\" src=\"" + heroList[68].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
@@ -560,7 +639,7 @@ function loadHeroes(){
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[56].name + "\nCarry: " + heroList[56].carry + "\nSupport: " + heroList[56].support + "\nNuker: " + heroList[56].nuker + "\nDisabler: " + heroList[56].disabler + "\nJungler: " + heroList[56].jungler + "\nDurabler: " + heroList[56].durable + "\nEscape: " + heroList[56].escape + "\nPusher: " + heroList[56].pusher + "\nInitiator: " + heroList[56].initiator + "\nComplexity: " + heroList[56].complexity + "\"><img id=\"" + heroList[56].name + "\" class=\"heroes\" src=\"" + heroList[56].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[57].name + "\nCarry: " + heroList[57].carry + "\nSupport: " + heroList[57].support + "\nNuker: " + heroList[57].nuker + "\nDisabler: " + heroList[57].disabler + "\nJungler: " + heroList[57].jungler + "\nDurabler: " + heroList[57].durable + "\nEscape: " + heroList[57].escape + "\nPusher: " + heroList[57].pusher + "\nInitiator: " + heroList[57].initiator + "\nComplexity: " + heroList[57].complexity + "\"><img id=\"" + heroList[57].name + "\" class=\"heroes\" src=\"" + heroList[57].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[61].name + "\nCarry: " + heroList[61].carry + "\nSupport: " + heroList[61].support + "\nNuker: " + heroList[61].nuker + "\nDisabler: " + heroList[61].disabler + "\nJungler: " + heroList[61].jungler + "\nDurabler: " + heroList[61].durable + "\nEscape: " + heroList[61].escape + "\nPusher: " + heroList[61].pusher + "\nInitiator: " + heroList[61].initiator + "\nComplexity: " + heroList[61].complexity + "\"><img id=\"" + heroList[61].name + "\" class=\"heroes\" src=\"" + heroList[61].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
-	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[66].name + "\nCarry: " + heroList[66].carry + "\nSupport: " + heroList[66].support + "\nNuker: " + heroList[66].nuker + "\nDisabler: " + heroList[66].disabler + "\nJungler: " + heroList[66].jungler + "\nDurabler: " + heroList[66].durable + "\nEscape: " + heroList[66].escape + "\nPusher: " + heroList[66].pusher + "\nInitiator: " + heroList[66].initiator + "\nComplexity: " + heroList[66].complexity + "\"><img id=\"" + heroList[66].name + "\" class=\"heroes\" src=\"" + heroList[66].imgsrc + "\" onclick=\"selectHero(this.id)\"></a><br>";
+	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[66].name + "\nCarry: " + heroList[66].carry + "\nSupport: " + heroList[66].support + "\nNuker: " + heroList[66].nuker + "\nDisabler: " + heroList[66].disabler + "\nJungler: " + heroList[66].jungler + "\nDurabler: " + heroList[66].durable + "\nEscape: " + heroList[66].escape + "\nPusher: " + heroList[66].pusher + "\nInitiator: " + heroList[66].initiator + "\nComplexity: " + heroList[66].complexity + "\"><img id=\"" + heroList[66].name + "\" class=\"heroes\" src=\"" + heroList[66].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[67].name + "\nCarry: " + heroList[67].carry + "\nSupport: " + heroList[67].support + "\nNuker: " + heroList[67].nuker + "\nDisabler: " + heroList[67].disabler + "\nJungler: " + heroList[67].jungler + "\nDurabler: " + heroList[67].durable + "\nEscape: " + heroList[67].escape + "\nPusher: " + heroList[67].pusher + "\nInitiator: " + heroList[67].initiator + "\nComplexity: " + heroList[67].complexity + "\"><img id=\"" + heroList[67].name + "\" class=\"heroes\" src=\"" + heroList[67].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[73].name + "\nCarry: " + heroList[73].carry + "\nSupport: " + heroList[73].support + "\nNuker: " + heroList[73].nuker + "\nDisabler: " + heroList[73].disabler + "\nJungler: " + heroList[73].jungler + "\nDurabler: " + heroList[73].durable + "\nEscape: " + heroList[73].escape + "\nPusher: " + heroList[73].pusher + "\nInitiator: " + heroList[73].initiator + "\nComplexity: " + heroList[73].complexity + "\"><img id=\"" + heroList[73].name + "\" class=\"heroes\" src=\"" + heroList[73].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[74].name + "\nCarry: " + heroList[74].carry + "\nSupport: " + heroList[74].support + "\nNuker: " + heroList[74].nuker + "\nDisabler: " + heroList[74].disabler + "\nJungler: " + heroList[74].jungler + "\nDurabler: " + heroList[74].durable + "\nEscape: " + heroList[74].escape + "\nPusher: " + heroList[74].pusher + "\nInitiator: " + heroList[74].initiator + "\nComplexity: " + heroList[74].complexity + "\"><img id=\"" + heroList[74].name + "\" class=\"heroes\" src=\"" + heroList[74].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
@@ -598,7 +677,7 @@ function loadHeroes(){
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[58].name + "\nCarry: " + heroList[58].carry + "\nSupport: " + heroList[58].support + "\nNuker: " + heroList[58].nuker + "\nDisabler: " + heroList[58].disabler + "\nJungler: " + heroList[58].jungler + "\nDurabler: " + heroList[58].durable + "\nEscape: " + heroList[58].escape + "\nPusher: " + heroList[58].pusher + "\nInitiator: " + heroList[58].initiator + "\nComplexity: " + heroList[58].complexity + "\"><img id=\"" + heroList[58].name + "\" class=\"heroes\" src=\"" + heroList[58].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[59].name + "\nCarry: " + heroList[59].carry + "\nSupport: " + heroList[59].support + "\nNuker: " + heroList[59].nuker + "\nDisabler: " + heroList[59].disabler + "\nJungler: " + heroList[59].jungler + "\nDurabler: " + heroList[59].durable + "\nEscape: " + heroList[59].escape + "\nPusher: " + heroList[59].pusher + "\nInitiator: " + heroList[59].initiator + "\nComplexity: " + heroList[59].complexity + "\"><img id=\"" + heroList[59].name + "\" class=\"heroes\" src=\"" + heroList[59].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[62].name + "\nCarry: " + heroList[62].carry + "\nSupport: " + heroList[62].support + "\nNuker: " + heroList[62].nuker + "\nDisabler: " + heroList[62].disabler + "\nJungler: " + heroList[62].jungler + "\nDurabler: " + heroList[62].durable + "\nEscape: " + heroList[62].escape + "\nPusher: " + heroList[62].pusher + "\nInitiator: " + heroList[62].initiator + "\nComplexity: " + heroList[62].complexity + "\"><img id=\"" + heroList[62].name + "\" class=\"heroes\" src=\"" + heroList[62].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
-	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[64].name + "\nCarry: " + heroList[64].carry + "\nSupport: " + heroList[64].support + "\nNuker: " + heroList[64].nuker + "\nDisabler: " + heroList[64].disabler + "\nJungler: " + heroList[64].jungler + "\nDurabler: " + heroList[64].durable + "\nEscape: " + heroList[64].escape + "\nPusher: " + heroList[64].pusher + "\nInitiator: " + heroList[64].initiator + "\nComplexity: " + heroList[64].complexity + "\"><img id=\"" + heroList[64].name + "\" class=\"heroes\" src=\"" + heroList[64].imgsrc + "\" onclick=\"selectHero(this.id)\"></a><br>";
+	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[64].name + "\nCarry: " + heroList[64].carry + "\nSupport: " + heroList[64].support + "\nNuker: " + heroList[64].nuker + "\nDisabler: " + heroList[64].disabler + "\nJungler: " + heroList[64].jungler + "\nDurabler: " + heroList[64].durable + "\nEscape: " + heroList[64].escape + "\nPusher: " + heroList[64].pusher + "\nInitiator: " + heroList[64].initiator + "\nComplexity: " + heroList[64].complexity + "\"><img id=\"" + heroList[64].name + "\" class=\"heroes\" src=\"" + heroList[64].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[65].name + "\nCarry: " + heroList[65].carry + "\nSupport: " + heroList[65].support + "\nNuker: " + heroList[65].nuker + "\nDisabler: " + heroList[65].disabler + "\nJungler: " + heroList[65].jungler + "\nDurabler: " + heroList[65].durable + "\nEscape: " + heroList[65].escape + "\nPusher: " + heroList[65].pusher + "\nInitiator: " + heroList[65].initiator + "\nComplexity: " + heroList[65].complexity + "\"><img id=\"" + heroList[65].name + "\" class=\"heroes\" src=\"" + heroList[65].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[69].name + "\nCarry: " + heroList[69].carry + "\nSupport: " + heroList[69].support + "\nNuker: " + heroList[69].nuker + "\nDisabler: " + heroList[69].disabler + "\nJungler: " + heroList[69].jungler + "\nDurabler: " + heroList[69].durable + "\nEscape: " + heroList[69].escape + "\nPusher: " + heroList[69].pusher + "\nInitiator: " + heroList[69].initiator + "\nComplexity: " + heroList[69].complexity + "\"><img id=\"" + heroList[69].name + "\" class=\"heroes\" src=\"" + heroList[69].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";
 	document.getElementById('displayHeroes').innerHTML += "<a hero=\"" + heroList[71].name + "\nCarry: " + heroList[71].carry + "\nSupport: " + heroList[71].support + "\nNuker: " + heroList[71].nuker + "\nDisabler: " + heroList[71].disabler + "\nJungler: " + heroList[71].jungler + "\nDurabler: " + heroList[71].durable + "\nEscape: " + heroList[71].escape + "\nPusher: " + heroList[71].pusher + "\nInitiator: " + heroList[71].initiator + "\nComplexity: " + heroList[71].complexity + "\"><img id=\"" + heroList[71].name + "\" class=\"heroes\" src=\"" + heroList[71].imgsrc + "\" onclick=\"selectHero(this.id)\"></a>";

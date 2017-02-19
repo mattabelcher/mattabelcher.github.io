@@ -8,7 +8,6 @@
 	color: rgb(68, 92, 132);
 	font-size: 20px;
 	width: 500px;
-	vertical-align: text-top;
 	float: left;
 	padding: 0px 10px 0px 0px;
 }
@@ -26,6 +25,10 @@
 	float: left;
 }
 
+.hero_area {
+	max-width: 1350px;
+}
+
 .heroes {
 	border: 2px solid rgb(10, 18, 22);
 	align-content: left;
@@ -34,7 +37,7 @@
 
 
 .comp_button {
-	background-color: rgb(68, 92, 132); /* Green */
+	background-color: rgb(68, 92, 132);
     border: none;
     color: rgb(10, 18, 22);
     padding: 15px 32px;
@@ -63,7 +66,7 @@ a:hover {
 }
 
 a[comps]:hover:after {
-  width: 190px;
+  width: 150px;
   font-size: 18px;
   content: attr(comps);
   padding: 4px 8px;
@@ -72,22 +75,22 @@ a[comps]:hover:after {
   top: 100%;
   white-space: pre-wrap;
   z-index: 2;
-  border-radius: 5px ;
+  border: 2px solid rgb(68, 92, 132);
   background: rgba(10,18,22,0.95);
   pointer-events: none;
 }
 
 a[hero]:hover:after {
-  width: 190px;
+  width: 150px;
   font-size: 18px;
   content: attr(hero);
   padding: 4px 8px;
   position: absolute;
   left: 0;
-  bottom: 100%;
+  bottom: 240%;
   white-space: pre-wrap;
   z-index: 2;
-  border-radius: 5px ;
+  border: 2px solid rgb(68, 92, 132);
   background: rgba(10,18,22,0.95);
   pointer-events: none;
 }
